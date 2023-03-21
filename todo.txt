@@ -4,3 +4,9 @@
 - Attacks [DONE]
 - Health Bar [DONE]
 - Game timers and game over [DONE]
+
+Sprites and Animations
+- Background sprite
+- Shop sprite with animation
+- Player sprite
+- Enemy sprite
