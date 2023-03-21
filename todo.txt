@@ -6,7 +6,7 @@
 - Game timers and game over [DONE]
 
 Sprites and Animations
-- Background sprite
-- Shop sprite with animation
+- Background sprite [DONE]
+- Shop sprite with animation [DONE]
 - Player sprite
 - Enemy sprite
