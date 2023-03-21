@@ -23,6 +23,7 @@ class Sprite {
     };
     this.color = color;
     this.isAttacking;
+    this.health = 100;
   }
 
   draw() {
@@ -96,14 +97,21 @@ const keys = {
   },
 };
 
-const animate = () => {
-  window.requestAnimationFrame(animate);
-  c.fillStyle = "black";
-  c.fillRect(0, 0, canvas.width, canvas.height);
+const detectCollisions = () => {
+  if (rectangularCollision(player, enemy) && player.isAttacking) {
+    enemy.health -= 20;
+    document.querySelector("#enemy-health").style.width = enemy.health + "%";
+    player.isAttacking = false;
+  }
 
-  player.update();
-  enemy.update();
+  if (rectangularCollision(enemy, player) && enemy.isAttacking) {
+    player.health -= 20;
+    document.querySelector("#player-health").style.width = player.health + "%";
+    enemy.isAttacking = false;
+  }
+};
 
+const movePlayers = () => {
   // player movement
   player.velocity.x = 0;
   if (keys.a.pressed && player.lastKey === "a") {
@@ -119,17 +127,18 @@ const animate = () => {
   } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = 5;
   }
+};
 
-  // collision detection
-  if (rectangularCollision(player, enemy) && player.isAttacking) {
-    console.log("hit");
-    player.isAttacking = false;
-  }
+const animate = () => {
+  window.requestAnimationFrame(animate);
+  c.fillStyle = "black";
+  c.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (rectangularCollision(enemy, player) && enemy.isAttacking) {
-    console.log("hit player");
-    enemy.isAttacking = false;
-  }
+  player.update();
+  enemy.update();
+
+  movePlayers();
+  detectCollisions();
 };
 
 const rectangularCollision = (rectangle1, rectangle2) => {

@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.game-container {
+  position: absolute;
+  display: flex;
+  padding: 24px;
+  width: 100%;
+  gap: 12px;
+  align-items: center;
+}
+
+.health-bar-container {
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+
+.health-bar {
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  background: blue;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.health-bar-background {
+  background-color: yellow;
+  height: 30px;
+  width: 100%;
+}
+
+.timer {
+  border: 8px solid red;
+  height: 100px;
+  width: 100px;
+  flex-shrink: 0;
+}
