@@ -129,6 +129,34 @@ const movePlayers = () => {
   }
 };
 
+const determineWinner = (player1Health, player2Health, timerId) => {
+  clearTimeout(timerId)
+  let result;
+  if (player1Health === player2Health) {
+    result = "Tie!";
+  } else if (player1Health > player2Health) {
+    result = "Player 1 Wins!";
+  } else {
+    result = "Player 2 Wins!";
+  }
+  document.querySelector("#result").innerHTML = result;
+  document.querySelector("#result").style.display = "flex";
+};
+
+let timer = 60;
+let timerId;
+const decreaseTimer = () => {
+  if (timer > 0) {
+    timerId = setTimeout(decreaseTimer, [1000]);
+    timer--;
+    document.querySelector("#game-timer").innerHTML = timer;
+  }
+  if (timer === 0) {
+    determineWinner(player.health, enemy.health, timerId);
+  }
+};
+decreaseTimer();
+
 const animate = () => {
   window.requestAnimationFrame(animate);
   c.fillStyle = "black";
@@ -139,6 +167,14 @@ const animate = () => {
 
   movePlayers();
   detectCollisions();
+
+  endGameOnHealth();
+};
+
+const endGameOnHealth = () => {
+  if (player.health <= 0 || enemy.health <= 0) {
+    determineWinner(player.health, enemy.health, timerId);
+  }
 };
 
 const rectangularCollision = (rectangle1, rectangle2) => {

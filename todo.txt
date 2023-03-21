@@ -1,6 +1,6 @@
 - Project setup [DONE]
 - Create player and enemy [DONE]
 - Move characters with event listeners [DONE]
-- Attacks
-- Health Bar
-- Game timers and game over
+- Attacks [DONE]
+- Health Bar [DONE]
+- Game timers and game over [DONE]
