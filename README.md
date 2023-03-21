@@ -10,9 +10,11 @@ Open up index.html and play!
 ### Player 1
 Move Left - a \
 Move Right - d \
-Jump - w
+Jump - w \
+Attach - Space Bar
 
 ### Player 2
 Move Left - Left Arrow \
 Move Right - Right Arrow \
-Jump - Up Arrow
+Jump - Up Arrow \
+Attack - Down Arrow
