@@ -38,6 +38,7 @@ const player = new Fighter({
       imageSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
       framesMax: 4,
     },
+    death: { imageSrc: "./img/samuraiMack/Death.png", framesMax: 6 },
   },
   attackBox: {
     offset: { x: 100, y: 50 },
@@ -62,6 +63,7 @@ const enemy = new Fighter({
     fall: { imageSrc: "./img/kenji/Fall.png", framesMax: 2 },
     attack1: { imageSrc: "./img/kenji/Attack1.png", framesMax: 4 },
     takeHit: { imageSrc: "./img/kenji/Take hit.png", framesMax: 3 },
+    death: { imageSrc: "./img/kenji/Death.png", framesMax: 7 },
   },
   attackBox: {
     offset: { x: -172, y: 50 },
@@ -195,37 +197,39 @@ const endGameOnHealth = () => {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    case "a":
-      player.lastKey = "a";
-      keys.a.pressed = true;
-      break;
-    case "d":
-      player.lastKey = "d";
-      keys.d.pressed = true;
-      break;
-    case "w":
-      player.velocity.y = -20;
-      break;
-    case " ":
-      player.attack();
-      break;
+  if (!player.dead && !enemy.dead) {
+    switch (event.key) {
+      case "a":
+        player.lastKey = "a";
+        keys.a.pressed = true;
+        break;
+      case "d":
+        player.lastKey = "d";
+        keys.d.pressed = true;
+        break;
+      case "w":
+        player.velocity.y = -20;
+        break;
+      case " ":
+        player.attack();
+        break;
 
-    // enemy
-    case "ArrowLeft":
-      enemy.lastKey = "ArrowLeft";
-      keys.ArrowLeft.pressed = true;
-      break;
-    case "ArrowRight":
-      enemy.lastKey = "ArrowRight";
-      keys.ArrowRight.pressed = true;
-      break;
-    case "ArrowUp":
-      enemy.velocity.y = -20;
-      break;
-    case "ArrowDown":
-      enemy.attack();
-      break;
+      // enemy
+      case "ArrowLeft":
+        enemy.lastKey = "ArrowLeft";
+        keys.ArrowLeft.pressed = true;
+        break;
+      case "ArrowRight":
+        enemy.lastKey = "ArrowRight";
+        keys.ArrowRight.pressed = true;
+        break;
+      case "ArrowUp":
+        enemy.velocity.y = -20;
+        break;
+      case "ArrowDown":
+        enemy.attack();
+        break;
+    }
   }
 });
 
