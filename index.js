@@ -34,7 +34,10 @@ const player = new Fighter({
     jump: { imageSrc: "./img/samuraiMack/Jump.png", framesMax: 2 },
     fall: { imageSrc: "./img/samuraiMack/Fall.png", framesMax: 2 },
     attack1: { imageSrc: "./img/samuraiMack/Attack1.png", framesMax: 6 },
-    attack2: { imageSrc: "./img/samuraiMack/Attack2.png", framesMax: 6 },
+    takeHit: {
+      imageSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
+      framesMax: 4,
+    },
   },
   attackBox: {
     offset: { x: 100, y: 50 },
@@ -58,7 +61,7 @@ const enemy = new Fighter({
     jump: { imageSrc: "./img/kenji/Jump.png", framesMax: 2 },
     fall: { imageSrc: "./img/kenji/Fall.png", framesMax: 2 },
     attack1: { imageSrc: "./img/kenji/Attack1.png", framesMax: 4 },
-    attack2: { imageSrc: "./img/kenji/Attack2.png", framesMax: 4 },
+    takeHit: { imageSrc: "./img/kenji/Take hit.png", framesMax: 3 },
   },
   attackBox: {
     offset: { x: -172, y: 50 },
@@ -89,12 +92,13 @@ const keys = {
 };
 
 const detectCollisions = () => {
+  // enemy gets hit
   if (
     rectangularCollision(player, enemy) &&
     player.isAttacking &&
     player.framesCurrent === 4
   ) {
-    enemy.health -= 20;
+    enemy.takeHit();
     document.querySelector("#enemy-health").style.width = enemy.health + "%";
     player.isAttacking = false;
   }
@@ -109,7 +113,7 @@ const detectCollisions = () => {
     enemy.isAttacking &&
     enemy.framesCurrent === 2
   ) {
-    player.health -= 20;
+    player.takeHit();
     document.querySelector("#player-health").style.width = player.health + "%";
     enemy.isAttacking = false;
   }
