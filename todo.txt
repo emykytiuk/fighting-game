@@ -9,4 +9,12 @@ Sprites and Animations
 - Background sprite [DONE]
 - Shop sprite with animation [DONE]
 - Player sprite
+    - Idle [DONE]
+    - Run [DONE]
+    - Jump [DONE]
+    - Attack [DONE]
 - Enemy sprite
+    - Idle [DONE]
+    - Run [DONE]
+    - Jump [DONE]
+    - Attack [DONE]
