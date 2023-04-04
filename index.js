@@ -21,7 +21,7 @@ const shop = new Sprite({
 });
 
 const player = new Fighter({
-  position: { x: 0, y: 0 },
+  position: { x: 250, y: 0 },
   velocity: { x: 0, y: 10 },
   offset: { x: 0, y: 0 },
   imageSrc: "./img/samuraiMack/Idle.png",
@@ -48,7 +48,7 @@ const player = new Fighter({
 });
 
 const enemy = new Fighter({
-  position: { x: 400, y: 100 },
+  position: { x: canvas.width - 250, y: 100 },
   velocity: { x: 0, y: 0 },
   color: "blue",
   offset: { x: -50, y: 0 },
@@ -101,7 +101,9 @@ const detectCollisions = () => {
     player.framesCurrent === 4
   ) {
     enemy.takeHit();
-    document.querySelector("#enemy-health").style.width = enemy.health + "%";
+    gsap.to("#enemy-health", {
+      width: enemy.health + "%",
+    });
     player.isAttacking = false;
   }
 
@@ -116,7 +118,9 @@ const detectCollisions = () => {
     enemy.framesCurrent === 2
   ) {
     player.takeHit();
-    document.querySelector("#player-health").style.width = player.health + "%";
+    gsap.to("#player-health", {
+      width: player.health + "%",
+    });
     enemy.isAttacking = false;
   }
   // if enemy misses
@@ -178,6 +182,8 @@ const animate = () => {
 
   background.update();
   shop.update();
+  c.fillStyle = "rgba(255,255,255,0.2)";
+  c.fillRect(0, 0, canvas.width, canvas.height);
 
   player.update();
   enemy.update();
